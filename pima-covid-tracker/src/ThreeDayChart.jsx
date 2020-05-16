@@ -92,8 +92,9 @@ export default function ThreeDayChart() {
               position="left"
               style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
             >
-              New Daily Positive Tests
+              Average Cases/3 Days 
             </Label>
+            
           </YAxis>
           <Line type="monotone" dataKey="ThreeDayAvg" stroke={theme.palette.primary.main} dot={false} />
         </LineChart>
