@@ -47,13 +47,14 @@ const data = [
   createData('5/13', 38),
   createData('5/14', 35),
   createData('5/15', 54),
+  createData('5/16', 31),
 ];
 
 export default function Chart() {
   const theme = useTheme();
     const last_seven_days = Number([data[data.length - 1].amount]) + Number([data[data.length - 2].amount]) + Number([data[data.length - 3].amount]) + Number([data[data.length - 4].amount]) + Number([data[data.length - 5].amount]) + Number([data[data.length - 6].amount]) + Number([data[data.length - 7].amount])
     console.log('last7', last_seven_days)
-
+    console.log(data[data.length -1])
   return (
     <React.Fragment>
       <Title>Daily Confirmations</Title>
