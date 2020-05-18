@@ -56,6 +56,9 @@ function createData(date, amount) {
     createData('5/13', 38),
     createData('5/14', 35),
     createData('5/15', 54),
+    createData('5/16', 31),
+    createData('5/17', 33),
+
   ];
   
   function createThreeDayData(ThreeDays, ThreeDayAvg) {
@@ -75,6 +78,7 @@ function createData(date, amount) {
       createThreeDayData('5/06', (data.slice(27,28)[0].amount + data.slice(28,29)[0].amount + data.slice(29,30)[0].amount) / 3),
       createThreeDayData('5/09', (data.slice(30,31)[0].amount + data.slice(31,32)[0].amount + data.slice(32,33)[0].amount) / 3),
       createThreeDayData('5/12', (data.slice(33,34)[0].amount + data.slice(34,35)[0].amount + data.slice(35,36)[0].amount) / 3),
+      createThreeDayData('5/15', (data.slice(36,37)[0].amount + data.slice(37,38)[0].amount + data.slice(38,39)[0].amount) / 3),
     ];
   
 
