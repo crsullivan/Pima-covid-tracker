@@ -58,6 +58,8 @@ function createData(date, amount) {
     createData('5/15', 54),
     createData('5/16', 31),
     createData('5/17', 33),
+    createData('5/18', 11),
+
 
   ];
 
