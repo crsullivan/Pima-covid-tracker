@@ -49,6 +49,7 @@ const data = [
   createData('5/16', 31),
   createData('5/17', 33),
   createData('5/18', 11),
+  createData('5/19', 63),
 
 
 ];
@@ -58,22 +59,22 @@ function createThreeDayData(ThreeDays, ThreeDayAvg) {
   }
   
   const three_day_data = [
-    createThreeDayData('4/09', (data.slice(data.length - 39, data.length - 38)[0].amount + data.slice(data.length - 38, data.length - 37)[0].amount + data.slice(data.length - 37, data.length - 36)[0].amount) / 3),
-    createThreeDayData('4/12', (data.slice(data.length - 36, data.length - 35)[0].amount + data.slice(data.length - 35, data.length - 34)[0].amount + data.slice(data.length - 34, data.length - 33)[0].amount) / 3),
-    createThreeDayData('4/15', (data.slice(data.length - 33, data.length - 32)[0].amount + data.slice(data.length - 32, data.length - 31)[0].amount + data.slice(data.length - 31, data.length - 30)[0].amount) / 3),
-    createThreeDayData('4/18', (data.slice(data.length - 30, data.length - 29)[0].amount + data.slice(data.length - 29, data.length - 28)[0].amount + data.slice(data.length - 28, data.length - 27)[0].amount) / 3),
-    createThreeDayData('4/21', (data.slice(data.length - 27, data.length - 26)[0].amount + data.slice(data.length - 26, data.length - 25)[0].amount + data.slice(data.length - 25, data.length - 24)[0].amount) / 3),
-    createThreeDayData('4/24', (data.slice(data.length - 24, data.length - 23)[0].amount + data.slice(data.length - 23, data.length - 22)[0].amount + data.slice(data.length - 22, data.length - 21)[0].amount) / 3),
-    createThreeDayData('4/27', (data.slice(data.length - 21, data.length - 20)[0].amount + data.slice(data.length - 20, data.length - 19)[0].amount + data.slice(data.length - 19, data.length - 18)[0].amount) / 3),
-    createThreeDayData('4/30', (data.slice(data.length - 18, data.length - 17)[0].amount + data.slice(data.length - 17, data.length - 16)[0].amount + data.slice(data.length - 16, data.length - 15)[0].amount) / 3),
-    createThreeDayData('5/03', (data.slice(data.length - 15, data.length - 14)[0].amount + data.slice(data.length - 14, data.length - 13)[0].amount + data.slice(data.length - 13, data.length - 12)[0].amount) / 3),
-    createThreeDayData('5/06', (data.slice(data.length - 12, data.length - 11)[0].amount + data.slice(data.length - 11, data.length - 10)[0].amount + data.slice(data.length - 10, data.length - 9)[0].amount) / 3),
-    createThreeDayData('5/09', (data.slice(data.length - 9, data.length - 8)[0].amount + data.slice(data.length - 8, data.length - 7)[0].amount + data.slice(data.length - 7, data.length - 6)[0].amount) / 3),
-    createThreeDayData('5/12', (data.slice(data.length - 6, data.length - 5)[0].amount + data.slice(data.length - 5, data.length - 4)[0].amount + data.slice(data.length - 4, data.length - 3)[0].amount) / 3),
-    createThreeDayData('5/15', (data.slice(data.length - 3, data.length - 2)[0].amount + data.slice(data.length - 2, data.length - 1)[0].amount + data.slice(data.length - 1, data.length - 0)[0].amount) / 3),
+    // createThreeDayData(data[data.length - 40].date, (data.slice(data.length - 42, data.length - 41)[0].amount + data.slice(data.length - 41, data.length - 40)[0].amount + data.slice(data.length - 40, data.length - 39)[0].amount) / 3),
+    createThreeDayData(data[data.length - 37].date, (data.slice(data.length - 39, data.length - 38)[0].amount + data.slice(data.length - 38, data.length - 37)[0].amount + data.slice(data.length - 37, data.length - 36)[0].amount) / 3),
+    createThreeDayData(data[data.length - 34].date, (data.slice(data.length - 36, data.length - 35)[0].amount + data.slice(data.length - 35, data.length - 34)[0].amount + data.slice(data.length - 34, data.length - 33)[0].amount) / 3),
+    createThreeDayData(data[data.length - 31].date, (data.slice(data.length - 33, data.length - 32)[0].amount + data.slice(data.length - 32, data.length - 31)[0].amount + data.slice(data.length - 31, data.length - 30)[0].amount) / 3),
+    createThreeDayData(data[data.length - 28].date, (data.slice(data.length - 30, data.length - 29)[0].amount + data.slice(data.length - 29, data.length - 28)[0].amount + data.slice(data.length - 28, data.length - 27)[0].amount) / 3),
+    createThreeDayData(data[data.length - 25].date, (data.slice(data.length - 27, data.length - 26)[0].amount + data.slice(data.length - 26, data.length - 25)[0].amount + data.slice(data.length - 25, data.length - 24)[0].amount) / 3),
+    createThreeDayData(data[data.length - 22].date, (data.slice(data.length - 24, data.length - 23)[0].amount + data.slice(data.length - 23, data.length - 22)[0].amount + data.slice(data.length - 22, data.length - 21)[0].amount) / 3),
+    createThreeDayData(data[data.length - 19].date, (data.slice(data.length - 21, data.length - 20)[0].amount + data.slice(data.length - 20, data.length - 19)[0].amount + data.slice(data.length - 19, data.length - 18)[0].amount) / 3),
+    createThreeDayData(data[data.length - 16].date, (data.slice(data.length - 18, data.length - 17)[0].amount + data.slice(data.length - 17, data.length - 16)[0].amount + data.slice(data.length - 16, data.length - 15)[0].amount) / 3),
+    createThreeDayData(data[data.length - 13].date, (data.slice(data.length - 15, data.length - 14)[0].amount + data.slice(data.length - 14, data.length - 13)[0].amount + data.slice(data.length - 13, data.length - 12)[0].amount) / 3),
+    createThreeDayData(data[data.length - 10].date, (data.slice(data.length - 12, data.length - 11)[0].amount + data.slice(data.length - 11, data.length - 10)[0].amount + data.slice(data.length - 10, data.length - 9)[0].amount) / 3),
+    createThreeDayData(data[data.length - 7].date, (data.slice(data.length - 9, data.length - 8)[0].amount + data.slice(data.length - 8, data.length - 7)[0].amount + data.slice(data.length - 7, data.length - 6)[0].amount) / 3),
+    createThreeDayData(data[data.length - 4].date, (data.slice(data.length - 6, data.length - 5)[0].amount + data.slice(data.length - 5, data.length - 4)[0].amount + data.slice(data.length - 4, data.length - 3)[0].amount) / 3),
+    createThreeDayData(data[data.length - 1].date, (data.slice(data.length - 3, data.length - 2)[0].amount + data.slice(data.length - 2, data.length - 1)[0].amount + data.slice(data.length - 1, data.length - 0)[0].amount) / 3),
 
   ];
-
 export default function ThreeDayChart() {
   const theme = useTheme();
     // const last_seven_days = Number([data[data.length - 1].amount]) + Number([data[data.length - 2].amount]) + Number([data[data.length - 3].amount]) + Number([data[data.length - 4].amount]) + Number([data[data.length - 5].amount]) + Number([data[data.length - 6].amount]) + Number([data[data.length - 7].amount])
