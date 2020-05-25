@@ -54,6 +54,7 @@ const data = [
   createData('5/21', 41),
   createData('5/22', 30),
   createData('5/23', 28),
+  createData('5/24', 25),
 
 
 
