@@ -66,6 +66,7 @@ function createData(date, amount) {
     createData('5/23', 28),
     createData('5/24', 25),
     createData('5/25', 19),
+    createData('5/26', 29),
 
 
   ];
