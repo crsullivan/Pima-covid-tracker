@@ -62,9 +62,7 @@ const data = [
   createData('5/28', 48),
   createData('5/29', 67),
   createData('5/30', 56),
-
-
-
+  createData('5/31', 78),
 
 
 ];
