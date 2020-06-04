@@ -72,7 +72,8 @@ function createData(date, amount) {
     createData('5/29', 67),
     createData('5/30', 56),
     createData('5/31', 78),
-
+    createData('6/01', 14),
+    createData('6/02', 114),
   ];
   
   function createThreeDayData(ThreeDays, ThreeDayAvg) {
@@ -80,6 +81,7 @@ function createData(date, amount) {
     }
     
     const three_day_data = [
+      createThreeDayData(data[data.length - 52].date, (data.slice(data.length - 54, data.length - 53)[0].amount + data.slice(data.length - 53, data.length - 52)[0].amount + data.slice(data.length - 52, data.length - 51)[0].amount) / 3),
       createThreeDayData(data[data.length - 49].date, (data.slice(data.length - 51, data.length - 50)[0].amount + data.slice(data.length - 50, data.length - 49)[0].amount + data.slice(data.length - 49, data.length - 48)[0].amount) / 3),
       createThreeDayData(data[data.length - 46].date, (data.slice(data.length - 48, data.length - 47)[0].amount + data.slice(data.length - 47, data.length - 46)[0].amount + data.slice(data.length - 46, data.length - 45)[0].amount) / 3),
       createThreeDayData(data[data.length - 43].date, (data.slice(data.length - 45, data.length - 44)[0].amount + data.slice(data.length - 44, data.length - 43)[0].amount + data.slice(data.length - 43, data.length - 42)[0].amount) / 3),

@@ -72,7 +72,8 @@ function createData(date, amount) {
     createData('5/29', 67),
     createData('5/30', 56),
     createData('5/31', 78),
-
+    createData('6/01', 14),
+    createData('6/02', 114),
   ];
 
 export default function Deposits() {
