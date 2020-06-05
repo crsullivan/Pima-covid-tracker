@@ -74,6 +74,8 @@ function createData(date, amount) {
     createData('5/31', 78),
     createData('6/01', 14),
     createData('6/02', 114),
+    createData('6/03', 129),
+
   ];
   
   function createThreeDayData(ThreeDays, ThreeDayAvg) {
