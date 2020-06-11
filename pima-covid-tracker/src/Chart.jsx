@@ -71,6 +71,7 @@ const data = [
   createData('6/06', 67),
   createData('6/07', 148),
   createData('6/08', 56),
+  createData('6/09', 7),
 
 ];
 
