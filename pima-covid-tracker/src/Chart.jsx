@@ -72,6 +72,14 @@ const data = [
   createData('6/07', 148),
   createData('6/08', 56),
   createData('6/09', 7),
+  createData('6/10', 189),
+  createData('6/11', 149),
+  createData('6/12', 149),
+  createData('6/13', 261),
+  createData('6/14', 21),
+  createData('6/15', 34),
+  createData('6/16', 485),
+  createData('6/17', 56),
 
 ];
 
