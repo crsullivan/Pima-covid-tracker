@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@material-ui/core": "^4.9.14",
+    "axios": "^0.19.2",
+    "gitignore": "^0.6.0",
+    "node": "^14.4.0",
+    "react-fontawesome": "^1.7.1",
+    "react-router-dom": "^5.2.0",
+    "react-vis": "^1.11.7",
+    "use-global-hook": "^0.1.12"
+  }
+}
