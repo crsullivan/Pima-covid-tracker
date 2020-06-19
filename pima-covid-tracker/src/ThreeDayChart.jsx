@@ -1,5 +1,6 @@
-import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {fetchData} from './actions/index';import axios from 'axios';import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
 
@@ -111,7 +112,12 @@ function createThreeDayData(ThreeDays, ThreeDayAvg) {
     createThreeDayData(data[data.length - 1].date, (data.slice(data.length - 3, data.length - 2)[0].amount + data.slice(data.length - 2, data.length - 1)[0].amount + data.slice(data.length - 1, data.length - 0)[0].amount) / 3),
 
   ];
-export default function ThreeDayChart() {
+function ThreeDayChart(props) {
+
+  useEffect (() => {
+    props.fetchData();
+}, [])
+
   const theme = useTheme();
     // const last_seven_days = Number([data[data.length - 1].amount]) + Number([data[data.length - 2].amount]) + Number([data[data.length - 3].amount]) + Number([data[data.length - 4].amount]) + Number([data[data.length - 5].amount]) + Number([data[data.length - 6].amount]) + Number([data[data.length - 7].amount])
     console.log(data.slice(data.length - 1, data.length - 0)[0].amount)
@@ -121,7 +127,7 @@ export default function ThreeDayChart() {
       <Title>Three Day Averages</Title>
       <ResponsiveContainer>
         <LineChart
-          data={three_day_data}
+          data={props.covidStats}
           margin={{
             top: 16,
             right: 16,
@@ -146,3 +152,14 @@ export default function ThreeDayChart() {
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+      covidStats: state.covidData,
+      loading: state.loading,
+      error: state.error
+  };
+};
+
+export default connect(mapStateToProps, {fetchData})(ThreeDayChart)

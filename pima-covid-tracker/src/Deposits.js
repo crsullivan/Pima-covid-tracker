@@ -1,5 +1,6 @@
-import React from 'react';
-import Link from '@material-ui/core/Link';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {fetchData} from './actions/index';import axios from 'axios';import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
@@ -91,7 +92,11 @@ function createData(date, amount) {
     createData('6/17', 56),
   ];
 
-export default function Deposits() {
+function Deposits(props) {
+
+  useEffect (() => {
+    props.fetchData();
+}, [])
 
     const last_seven_days = Number([data[data.length - 1].amount]) + Number([data[data.length - 2].amount]) + Number([data[data.length - 3].amount]) + Number([data[data.length - 4].amount]) + Number([data[data.length - 5].amount]) + Number([data[data.length - 6].amount]) + Number([data[data.length - 7].amount])
     console.log('last7', last_seven_days)
@@ -118,3 +123,14 @@ export default function Deposits() {
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+      covidStats: state.covidData,
+      loading: state.loading,
+      error: state.error
+  };
+};
+
+export default connect(mapStateToProps, {fetchData})(Deposits)

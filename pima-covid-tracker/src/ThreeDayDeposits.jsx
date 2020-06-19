@@ -1,5 +1,6 @@
-import React from 'react';
-import Link from '@material-ui/core/Link';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {fetchData} from './actions/index';import axios from 'axios';import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
 function createData(date, amount) {
     return { date, amount };
   }
+
   
   const data = [
     createData('4/09', 49),
@@ -123,12 +125,17 @@ function createData(date, amount) {
     ];
   
 
-export default function ThreeDayDeposits() {
+function ThreeDayDeposits(props) {
+
+  useEffect (() => {
+    props.fetchData();
+}, [])
+
 
     // const last_seven_days = Number([data[data.length - 1].amount]) + Number([data[data.length - 2].amount]) + Number([data[data.length - 3].amount]) + Number([data[data.length - 4].amount]) + Number([data[data.length - 5].amount]) + Number([data[data.length - 6].amount]) + Number([data[data.length - 7].amount])
     // console.log('last7', last_seven_days)
     let total = 0
-    three_day_data.forEach(element => total += element.ThreeDayAvg)
+    props.covidStats.forEach(element => total += element.ThreeDayAvg)
     let avg = total / three_day_data.length
     console.log('3 day len', three_day_data.length)
 
@@ -167,3 +174,14 @@ export default function ThreeDayDeposits() {
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+      covidStats: state.covidData,
+      loading: state.loading,
+      error: state.error
+  };
+};
+
+export default connect(mapStateToProps, {fetchData})(ThreeDayDeposits)
