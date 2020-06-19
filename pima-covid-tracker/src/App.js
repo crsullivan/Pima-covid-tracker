@@ -1,18 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {fetchData} from './actions/index';
 import './App.css';
 import Dashboard from './Dashboard'
 
 function App(props) {
+  const [stats, setStats] = useState()
 
   useEffect (() => {
-    props.fetchData();
+    const stats = props.fetchData();
+    setStats(stats)
 }, [])
-
+console.log(stats)
   return (
     <div className="App">
-      <Dashboard />
+      <Dashboard state={stats}/>
     </div>
   );
 }

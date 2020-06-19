@@ -135,7 +135,7 @@ function ThreeDayDeposits(props) {
     // const last_seven_days = Number([data[data.length - 1].amount]) + Number([data[data.length - 2].amount]) + Number([data[data.length - 3].amount]) + Number([data[data.length - 4].amount]) + Number([data[data.length - 5].amount]) + Number([data[data.length - 6].amount]) + Number([data[data.length - 7].amount])
     // console.log('last7', last_seven_days)
     let total = 0
-    props.covidStats.forEach(element => total += element.ThreeDayAvg)
+    three_day_data.forEach(element => total += element.ThreeDayAvg)
     let avg = total / three_day_data.length
     console.log('3 day len', three_day_data.length)
 

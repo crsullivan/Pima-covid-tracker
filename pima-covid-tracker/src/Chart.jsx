@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {fetchData} from './actions/index';import axios from 'axios';
 import { useTheme } from '@material-ui/core/styles';
@@ -85,22 +85,41 @@ import Title from './Title';
 
 function Chart(props) {
 
-  useEffect (() => {
-    props.fetchData();
-}, [])
+  const [dataManip, setDataManip] = useState()
+
 
   const theme = useTheme();
-    // const last_seven_days = Number([stats[stats.length - 1].value]) + Number([stats[stats.length - 2].value]) + Number([stats[stats.length - 3].value]) + Number([stats[stats.length - 4].value]) + Number([stats[stats.length - 5].value]) + Number([stats[stats.length - 6].value]) + Number([stats[stats.length - 7].value])
+
+  async function findLastSeven() {
+    const result = await axios
+    .get("https://covid-tracker-be.herokuapp.com/data")
+    .then(res => {
+              console.log("resresresres:", res.data)
+              const dataManip = Number([res.data[res.data.length - 1].value]) + Number([res.data[res.data.length - 2].value]) + Number([res.data[res.data.length - 3].value]) + Number([res.data[res.data.length - 4].value]) + Number([res.data[res.data.length - 5].value]) + Number([res.data[res.data.length - 6].value]) + Number([res.data[res.data.length - 7].value]);
+              setDataManip(dataManip)
+              console.log(dataManip.length)
+          })
+          .catch(error => {
+              console.log(error)
+              alert(error)
+          })
+
+        }
+    // const last_seven_days = Number([props.covidStats[props.covidStats.length - 1].value]) + Number([props.covidStats[props.covidStats.length - 2].value]) + Number([props.covidStats[props.covidStats.length - 3].value]) + Number([props.covidStats[props.covidStats.length - 4].value]) + Number([props.covidStats[props.covidStats.length - 5].value]) + Number([props.covidStats[props.covidStats.length - 6].value]) + Number([props.covidStats[props.covidStats.length - 7].value])
     // console.log('last7', last_seven_days)
-    // console.log('some stat', stats[stats.length -1].value)
-    console.log(props.covidStats)
+
+    useEffect(() => {
+      findLastSeven();
+     }, []);
+
+    console.log("propiess", props)
 
   return (
     <React.Fragment>
       <Title>Daily Confirmations</Title>
       <ResponsiveContainer>
         <LineChart
-          data={props.covidStats}
+          data={props.state}
           margin={{
             top: 16,
             right: 16,
@@ -125,13 +144,4 @@ function Chart(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-      covidStats: state.covidData,
-      loading: state.loading,
-      error: state.error
-  };
-};
-
-export default connect(mapStateToProps, {fetchData})(Chart)
+export default Chart
