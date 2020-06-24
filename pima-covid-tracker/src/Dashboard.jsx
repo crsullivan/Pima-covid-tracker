@@ -1,5 +1,5 @@
-  
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,7 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -131,7 +132,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
+
+  const [stats, setStats] = useState()
+
+  useEffect (() => {
+    (async () => {
+    await axios
+    .get("https://covid-tracker-be.herokuapp.com/data")
+    .then(res => {
+              const stats = res.data;
+              setStats(stats)
+              
+          })
+          .catch(error => {
+              console.log(error)
+              alert(error)
+          })
+        }) ();
+      }, [])
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -141,6 +161,10 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  function goToAdmin() {
+    window.location.assign('http://localhost:3000/admin');
+  }
 
   return (
     <div className={classes.root}>
@@ -157,13 +181,11 @@ export default function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="purple" noWrap className={classes.title}>
-            Laura's Pima County Tracker
+            Laura's Pima County Covid19 Tracker
           </Typography>
-          {/* <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton> */}
+          <Button color="inherit" onClick={goToAdmin}>
+          ADMIN
+          </Button>
         </Toolbar>
       </AppBar>
       {/* <Drawer
@@ -190,13 +212,13 @@ export default function Dashboard() {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart />
+                <Chart state={stats}/>
               </Paper>
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                <Deposits state={stats}/>
               </Paper>
             </Grid>
             {/* Recent Orders */}
@@ -213,13 +235,13 @@ export default function Dashboard() {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <ThreeDayChart />
+                <ThreeDayChart state={stats}/>
               </Paper>
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <ThreeDayDeposits />
+                <ThreeDayDeposits state={stats}/>
               </Paper>
             </Grid>
             {/* Recent Orders */}

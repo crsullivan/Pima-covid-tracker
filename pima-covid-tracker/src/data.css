@@ -1,0 +1,16 @@
+.top {
+    margin-top: 5%;
+    text-align: center;
+}
+
+
+.main {
+    margin: auto;
+    margin-top: 5%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 50%;
+    justify-content: space-evenly;
+}
+

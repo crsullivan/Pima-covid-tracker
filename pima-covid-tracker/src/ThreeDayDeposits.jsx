@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
 function createData(date, amount) {
     return { date, amount };
   }
+
   
   const data = [
     createData('4/09', 49),
@@ -123,17 +125,79 @@ function createData(date, amount) {
     ];
   
 
-export default function ThreeDayDeposits() {
+function ThreeDayDeposits(props) {
+
+  const [dataSize, setDataSize] = useState()
+  const [dataManip, setDataManip] = useState()
+  const [every3Days, setEvery3Days] = useState([])
+  const [every3DaysData, setEvery3DaysData] = useState([])
+  const [newArr, setNewArr] = useState()
+  const [threeDayAvg, setThreeDayAvg] = useState()
+  const [currentAvg, setCurrentAvg] = useState()
+
+
+
+  async function getData() {
+    const result = await axios
+    .get("https://covid-tracker-be.herokuapp.com/data")
+    .then(res => {
+
+              const dataSize = res.data.length - (Math.floor(res.data.length/3) * 3) 
+              const dataManip = res.data.slice(dataSize)
+              setDataManip(dataManip)
+              const every3Days = []
+              var i,j,temparray,chunk = 3;
+              for (i=0,j=dataManip.length; i<j; i+=chunk) {
+                temparray = dataManip.slice(i,i+chunk);
+                setEvery3Days(every3Days.push(temparray))
+              }
+              const every3DaysData = []
+              var counter = 0
+              every3Days.forEach( el => {
+                var obj = {};
+                obj["id"] = counter += 1
+                obj["date"] = el[2].date;
+                obj["value"] = Number(((el[0].value + el[1].value + el[2].value) / 3).toFixed(2))
+                setEvery3DaysData(every3DaysData.push(obj))
+              })
+            
+                const newArr = Array.from(every3DaysData)
+                setNewArr(newArr)
+                var total = 0
+                newArr.forEach( el => {
+                  total += el.value
+                })
+                var avg = (total / newArr.length).toFixed(2)
+                const threeDayAvg = avg
+                setThreeDayAvg(threeDayAvg)
+                const currentAvg = newArr[newArr.length - 1].value
+                setCurrentAvg(currentAvg)
+          })
+
+          
+          .catch(error => {
+              console.log(error)
+              alert(error)
+          })
+
+        }
+    // const last_seven_days = Number([props.covidStats[props.covidStats.length - 1].value]) + Number([props.covidStats[props.covidStats.length - 2].value]) + Number([props.covidStats[props.covidStats.length - 3].value]) + Number([props.covidStats[props.covidStats.length - 4].value]) + Number([props.covidStats[props.covidStats.length - 5].value]) + Number([props.covidStats[props.covidStats.length - 6].value]) + Number([props.covidStats[props.covidStats.length - 7].value])
+    // ('last7', last_seven_days)
+
+    useEffect(() => {
+      getData();
+     }, []);
+
 
     // const last_seven_days = Number([data[data.length - 1].amount]) + Number([data[data.length - 2].amount]) + Number([data[data.length - 3].amount]) + Number([data[data.length - 4].amount]) + Number([data[data.length - 5].amount]) + Number([data[data.length - 6].amount]) + Number([data[data.length - 7].amount])
-    // console.log('last7', last_seven_days)
+    // ('last7', last_seven_days)
     let total = 0
-    three_day_data.forEach(element => total += element.ThreeDayAvg)
-    let avg = total / three_day_data.length
-    console.log('3 day len', three_day_data.length)
+    // three_day_data.forEach(element => total += element.ThreeDayAvg)
+    // let avg = total / three_day_data.length
+    // ('3 day len', three_day_data.length)
 
-    let last_total = three_day_data[three_day_data.length - 1].ThreeDayAvg
-    console.log(data.length)
+    // let last_total = three_day_data[three_day_data.length - 1].ThreeDayAvg
+    // (data.length)
 
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -152,11 +216,11 @@ export default function ThreeDayDeposits() {
     <React.Fragment>
       <Title>Typical Three Day Average</Title>
       <Typography component="p" variant="h4">
-      {number_format(avg,2)}
+      {threeDayAvg}
       </Typography>
       <Title>Last Recorded Three Day Average</Title>
       <Typography component="p" variant="h4">
-      {number_format(last_total,2)}
+      {currentAvg}
       </Typography>
 
       {/* <div>
@@ -167,3 +231,5 @@ export default function ThreeDayDeposits() {
     </React.Fragment>
   );
 }
+
+export default ThreeDayDeposits
