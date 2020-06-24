@@ -163,7 +163,7 @@ export default function Dashboard(props) {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   function goToAdmin() {
-    window.location.assign('http://localhost:3000/admin');
+    window.location.assign('https://laurasgraph.now.sh/admin');
   }
 
   return (
