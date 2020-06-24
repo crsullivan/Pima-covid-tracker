@@ -1,31 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import {connect} from 'react-redux';
-import {fetchData} from './actions/index';
+import { Router, Route, Switch } from "react-router-dom";
 import './App.css';
-import Dashboard from './Dashboard'
+import Dashboard from './Dashboard';
+import Admin from "./Admin";
+import PrivateRoute from "./privateRoute";
+import AddData from './AddData'
+import history from "./history";
 
-function App(props) {
-  const [stats, setStats] = useState()
 
-  useEffect (() => {
-    const stats = props.fetchData();
-    setStats(stats)
-}, [])
-console.log(stats)
+function App() {
   return (
+    <Router history={history}>
     <div className="App">
-      <Dashboard state={stats}/>
+      <Switch>
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/admin" component={Admin} />
+        <PrivateRoute path="/add" component={AddData} />
+      </Switch>
     </div>
+    </Router>
   );
 }
 
-const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-      covidStats: state.covidStats,
-      loading: state.loading,
-      error: state.error
-  };
-};
-
-export default connect(mapStateToProps, {fetchData})(App)
+export default App;

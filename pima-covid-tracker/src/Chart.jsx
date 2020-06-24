@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {connect} from 'react-redux';
-import {fetchData} from './actions/index';import axios from 'axios';
+import axios from 'axios';
 import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
@@ -85,7 +84,7 @@ import Title from './Title';
 
 function Chart(props) {
 
-  const [dataManip, setDataManip] = useState()
+  const [dataManip, setDataManip] = useState([])
 
 
   const theme = useTheme();
@@ -94,10 +93,8 @@ function Chart(props) {
     const result = await axios
     .get("https://covid-tracker-be.herokuapp.com/data")
     .then(res => {
-              console.log("resresresres:", res.data)
-              const dataManip = Number([res.data[res.data.length - 1].value]) + Number([res.data[res.data.length - 2].value]) + Number([res.data[res.data.length - 3].value]) + Number([res.data[res.data.length - 4].value]) + Number([res.data[res.data.length - 5].value]) + Number([res.data[res.data.length - 6].value]) + Number([res.data[res.data.length - 7].value]);
+              const dataManip = res.data
               setDataManip(dataManip)
-              console.log(dataManip.length)
           })
           .catch(error => {
               console.log(error)
@@ -106,20 +103,18 @@ function Chart(props) {
 
         }
     // const last_seven_days = Number([props.covidStats[props.covidStats.length - 1].value]) + Number([props.covidStats[props.covidStats.length - 2].value]) + Number([props.covidStats[props.covidStats.length - 3].value]) + Number([props.covidStats[props.covidStats.length - 4].value]) + Number([props.covidStats[props.covidStats.length - 5].value]) + Number([props.covidStats[props.covidStats.length - 6].value]) + Number([props.covidStats[props.covidStats.length - 7].value])
-    // console.log('last7', last_seven_days)
+    // ('last7', last_seven_days)
 
     useEffect(() => {
       findLastSeven();
      }, []);
-
-    console.log("propiess", props)
 
   return (
     <React.Fragment>
       <Title>Daily Confirmations</Title>
       <ResponsiveContainer>
         <LineChart
-          data={props.state}
+          data={dataManip}
           margin={{
             top: 16,
             right: 16,

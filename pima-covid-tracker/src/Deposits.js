@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {connect} from 'react-redux';
-import {fetchData} from './actions/index';import axios from 'axios';import Link from '@material-ui/core/Link';
+import axios from 'axios';
+import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
@@ -95,10 +95,6 @@ const useStyles = makeStyles({
 function Deposits(props) {
   const [dataManip, setDataManip] = useState()
 
-  useEffect (() => {
-    props.fetchData();
-}, [])
-
 async function findLastSeven() {
   const result = await axios
   .get("https://covid-tracker-be.herokuapp.com/data")
@@ -119,7 +115,7 @@ async function findLastSeven() {
 
 
     // const last_seven_days = Number([data[data.length - 1].amount]) + Number([data[data.length - 2].amount]) + Number([data[data.length - 3].amount]) + Number([data[data.length - 4].amount]) + Number([data[data.length - 5].amount]) + Number([data[data.length - 6].amount]) + Number([data[data.length - 7].amount])
-    // console.log('last7', last_seven_days)
+    // ('last7', last_seven_days)
 
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -144,13 +140,4 @@ async function findLastSeven() {
   );
 }
 
-const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-      covidStats: state.covidData,
-      loading: state.loading,
-      error: state.error
-  };
-};
-
-export default connect(mapStateToProps, {fetchData})(Deposits)
+export default Deposits

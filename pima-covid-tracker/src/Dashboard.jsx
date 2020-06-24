@@ -11,6 +11,7 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -140,7 +141,6 @@ export default function Dashboard(props) {
     await axios
     .get("https://covid-tracker-be.herokuapp.com/data")
     .then(res => {
-              console.log("resresresres:", res.data)
               const stats = res.data;
               setStats(stats)
               
@@ -161,7 +161,11 @@ export default function Dashboard(props) {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-console.log("staaaaaats", stats)
+
+  function goToAdmin() {
+    window.location.assign('http://localhost:3000/admin');
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -177,13 +181,11 @@ console.log("staaaaaats", stats)
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="purple" noWrap className={classes.title}>
-            Laura's Pima County Tracker
+            Laura's Pima County Covid19 Tracker
           </Typography>
-          {/* <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton> */}
+          <Button color="inherit" onClick={goToAdmin}>
+          ADMIN
+          </Button>
         </Toolbar>
       </AppBar>
       {/* <Drawer
