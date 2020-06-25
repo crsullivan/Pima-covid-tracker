@@ -28,6 +28,8 @@ import ThreeDayDeposits from './ThreeDayDeposits';
 import Orders from './Orders';
 import { createMuiTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
+import SevenDayChart from './SevenDayChart';
+import SevenDayDeposits from './SevenDayDeposits';
 
 const theme = createMuiTheme({
     palette: {
@@ -251,7 +253,31 @@ export default function Dashboard(props) {
               </Paper>
             </Grid> */}
           </Grid>
-          <Box pt={4}>
+
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={3}>
+            {/* Chart */}
+            <Grid item xs={12} md={8} lg={9}>
+              <Paper className={fixedHeightPaper}>
+                <SevenDayChart state={stats}/>
+              </Paper>
+            </Grid>
+            {/* Recent Deposits */}
+            <Grid item xs={12} md={4} lg={3}>
+              <Paper className={fixedHeightPaper}>
+                <SevenDayDeposits state={stats}/>
+              </Paper>
+            </Grid>
+            {/* Recent Orders */}
+            {/* <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <Orders />
+              </Paper>
+            </Grid> */}
+          </Grid>
+
+        </Container>
+        <Box pt={4}>
             <Copyright />
           </Box>
         </Container>
