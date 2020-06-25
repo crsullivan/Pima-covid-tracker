@@ -173,7 +173,7 @@ function ThreeDayChart() {
     // (three_day_data[0])
     return (
       <React.Fragment>
-        <Title>Daily Confirmations</Title>
+        <Title>Three Day Averages</Title>
         <ResponsiveContainer>
           <LineChart
             data={newArr}
