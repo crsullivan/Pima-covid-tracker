@@ -30,6 +30,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 import SevenDayChart from './SevenDayChart';
 import SevenDayDeposits from './SevenDayDeposits';
+import { TextareaAutosize } from '@material-ui/core';
 
 const theme = createMuiTheme({
     palette: {
@@ -93,26 +94,26 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9),
-    },
-  },
+  // drawerPaper: {
+  //   position: 'relative',
+  //   whiteSpace: 'nowrap',
+  //   width: drawerWidth,
+  //   transition: theme.transitions.create('width', {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.enteringScreen,
+  //   }),
+  // },
+  // drawerPaperClose: {
+  //   overflowX: 'hidden',
+  //   transition: theme.transitions.create('width', {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.leavingScreen,
+  //   }),
+  //   width: theme.spacing(7),
+  //   [theme.breakpoints.up('sm')]: {
+  //     width: theme.spacing(9),
+  //   },
+  // },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -128,9 +129,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    
   },
   fixedHeight: {
     height: 240,
+    margin: 'auto',
   },
 }));
 
@@ -211,72 +214,44 @@ export default function Dashboard(props) {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart state={stats}/>
+                <Chart />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits state={stats}/>
+                <Deposits />
               </Paper>
             </Grid>
-            {/* Recent Orders */}
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid> */}
           </Grid>
 
-        </Container>
-        <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <ThreeDayChart state={stats}/>
+                <ThreeDayChart />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <ThreeDayDeposits state={stats}/>
+                <ThreeDayDeposits />
               </Paper>
             </Grid>
-            {/* Recent Orders */}
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid> */}
           </Grid>
 
-        <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item xs={12} md={8} lg={9} >
               <Paper className={fixedHeightPaper}>
-                <SevenDayChart state={stats}/>
+                <SevenDayChart />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <SevenDayDeposits state={stats}/>
+                <SevenDayDeposits />
               </Paper>
             </Grid>
-            {/* Recent Orders */}
-            {/* <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid> */}
           </Grid>
 
-        </Container>
         <Box pt={4}>
             <Copyright />
           </Box>
