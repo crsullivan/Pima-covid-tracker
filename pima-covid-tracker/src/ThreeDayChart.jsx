@@ -189,12 +189,12 @@ function ThreeDayChart() {
               <Label
                 angle={270}
                 position="left"
-                style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
+                style={{ textAnchor: 'middle', fill: theme.palette.text.secondary }}
               >
                 New Daily Positive Tests
               </Label>
             </YAxis>
-            <Line type="monotone" dataKey="value" stroke={theme.palette.primary.main} dot={false} />
+            <Line type="monotone" dataKey="value" stroke={theme.palette.secondary.main} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </React.Fragment>

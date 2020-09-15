@@ -76,7 +76,7 @@ function SevenDayChart() {
                 New Daily Positive Tests
               </Label>
             </YAxis>
-            <Line type="monotone" dataKey="value" stroke={theme.palette.primary.main} dot={false} />
+            <Line type="monotone" dataKey="value" stroke={theme.palette.secondary.main} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </React.Fragment>

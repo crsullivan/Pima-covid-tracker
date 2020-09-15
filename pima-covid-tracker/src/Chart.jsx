@@ -85,7 +85,8 @@ import Title from './Title';
 function Chart(props) {
 
   const [dataManip, setDataManip] = useState([])
-
+  
+// set state here to manage data coming from API
 
   const theme = useTheme();
 
@@ -132,7 +133,7 @@ function Chart(props) {
               New Daily Positive Tests
             </Label>
           </YAxis>
-          <Line type="monotone" dataKey="value" stroke={theme.palette.primary.main} dot={false} />
+          <Line type="monotone" dataKey="value" stroke={theme.palette.secondary.main} dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>

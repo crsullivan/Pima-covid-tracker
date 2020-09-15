@@ -32,9 +32,13 @@ import SevenDayChart from './SevenDayChart';
 import SevenDayDeposits from './SevenDayDeposits';
 import { TextareaAutosize } from '@material-ui/core';
 
+const accent = purple['A200'];
+
 const theme = createMuiTheme({
     palette: {
-      primary: purple,
+      primary: {
+        main: '#c852ff',
+      },
       secondary: {
         main: '#f44336',
       },
@@ -46,7 +50,7 @@ function Copyright() {
     <Typography variant="body2" color="purple" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        c-r-sullivan
+        EclecticLogic
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -174,11 +178,10 @@ export default function Dashboard(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar color="secondary.dark" position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
-            color="purple"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
